@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mop_website/widgets/centeredView.dart';
@@ -15,29 +16,34 @@ class Services extends StatelessWidget {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          AutoSizeText('TOP Services that are open for customers'),
+          AutoSizeText(
+            'TOP Services that are open for customers',
+            maxLines: 1,
+            style: GoogleFonts.montserrat(
+                fontWeight: FontWeight.w700, fontSize: 55, color: Colors.white),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              buildContainer('card', 'Car Detailing'),
-              buildContainer('fwash', 'Full Wash'),
-              buildContainer('cwork', 'Custom Work'),
+              buildContainer('card', 'Car Detailing', context),
+              buildContainer('fwash', 'Full Wash', context),
+              buildContainer('cwork', 'Custom Work', context),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              buildContainer('tirer', 'Tire Replacement'),
-              buildContainer('bassist', 'Breakdown Assist'),
-              buildContainer('acserv', 'A/C Services'),
+              buildContainer('tirer', 'Tire Replacement', context),
+              buildContainer('bassist', 'Breakdown Assist', context),
+              buildContainer('acserv', 'A/C Services', context),
             ],
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              buildContainer('vinspec', 'Vehicle Inspection'),
-              buildContainer('pandd', 'Painting and Denting'),
-              buildContainer('wschanging', 'WindSield Change'),
+              buildContainer('vinspec', 'Vehicle Inspection', context),
+              buildContainer('pandd', 'Painting and Denting', context),
+              buildContainer('wschanging', 'WindSield Change', context),
             ],
           ),
         ],
@@ -45,16 +51,17 @@ class Services extends StatelessWidget {
     );
   }
 
-  Container buildContainer(imagename, text) {
+  Container buildContainer(imagename, text, context) {
     return Container(
-      height: 100,
+      // height: 150,
+      width: MediaQuery.of(context).size.width / 5,
       color: Colors.white,
       child: Stack(
         alignment: Alignment.center,
         children: [
           Image.asset(
             'assets/images/' + imagename + '.png',
-            fit: BoxFit.contain,
+            fit: BoxFit.fitHeight,
           ),
           Center(
             child: Text(
